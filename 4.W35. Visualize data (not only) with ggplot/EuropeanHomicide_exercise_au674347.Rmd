@@ -3,11 +3,13 @@ title: "European Homocide Exercise"
 author: "Rikke Uldbæk"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
+  pdf_document:
+    toc: yes
+  blogdown::html_page:
+    toc: yes
   html_document:
     toc: yes
     df_print: paged
-  blogdown::html_page:
-    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +33,7 @@ Are homicide rates in Europe today lower or higher than in the past? Using the p
 pacman::p_load(tidyverse,dplyr, data.table, ggplot2, tibble, devtools, readr)
 
 # setting working directory
-setwd("~/Desktop/OneDrive - Aarhus Universitet/Cognitive Science/5th semester/Cultural Datascience/AU674347_uldbaek_rikke/4.W35. Visualize data (not only) with ggplot/HomicideHistory_exercise")
+setwd("~/Desktop/OneDrive - Aarhus Universitet/Cognitive Science/5th semester/Cultural Datascience/AU674347_uldbaek_rikke/4.W35. Visualize data (not only) with ggplot")
 ```
 
 ## Load the available data from ourworldindata.org
@@ -97,7 +99,7 @@ _You can visualize each country's trend separately by adding an extra argument t
 - _change the facet "layout" to two columns and three rows so that the trends are easier to see in horizontal layout. _
 
 
-```{r eval = FALSE}
+```{r}
 #plotting the homicide trends 
 ggplot(data = Western_Europe, aes(x= Year, y= homicides_per_100k, color= Entity))+ geom_histogram(stat="identity")+
   facet_wrap(~Entity, nrow =3, ncol = 2)+
@@ -117,7 +119,7 @@ ggplot(data = Western_Europe, aes(x= Year, y= homicides_per_100k, color= Entity)
 There seems to be an increase in "Years of ruling" through time, while the trend in the homicides above, yields a descending pattern in homicides through time. 
 
 
-```{r eval = FALSE}
+```{r}
 # loading the data
 kings <- read_delim("data/kings.csv", ";", escape_double = FALSE, 
     trim_ws = TRUE)
